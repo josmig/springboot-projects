@@ -2,14 +2,16 @@ package com.pantigoso.app.form.Model;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class Usuario {
 
 
     //solo se validan los datos que estan en el formulario , los que queremos mapear
     private String identificador;
-
-    @NotEmpty
+    //alternativa con message para mandar mensajes personalizados
+    @NotEmpty(message = "El nombre no puede ser vacio")
+    @Size(min = 3, max = 8) //size para strings solamente , para enter min y max
     private String username;
     @NotEmpty
     private String nombre;
@@ -18,7 +20,7 @@ public class Usuario {
     @NotEmpty
     private String password;
     @NotEmpty
-    @Email
+    @Email(message = "Correo con formato incorrecto")
     private String email;
 
     public String getIdentificador() {
