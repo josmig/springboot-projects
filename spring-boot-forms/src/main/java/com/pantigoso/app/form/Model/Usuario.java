@@ -10,7 +10,8 @@ public class Usuario {
     //solo se validan los datos que estan en el formulario , los que queremos mapear
     private String identificador;
     //alternativa con message para mandar mensajes personalizados
-    @NotEmpty(message = "El nombre no puede ser vacio")
+    //@NotEmpty(message = "El nombre no puede ser vacio")
+    @NotEmpty
     @Size(min = 3, max = 8) //size para strings solamente , para enter min y max
     private String username;
     @NotEmpty
@@ -20,7 +21,8 @@ public class Usuario {
     @NotEmpty
     private String password;
     @NotEmpty
-    @Email(message = "Correo con formato incorrecto")
+    //@Email(message = "Correo con formato incorrecto")
+    @Email
     private String email;
 
     public String getIdentificador() {
