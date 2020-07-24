@@ -4,16 +4,15 @@ import com.pantigoso.app.form.Model.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@SessionAttributes("user") //para mantener los datos del usuario para actualizar
 public class FormController {
 
 	//Metodos handler GET / POST
@@ -31,7 +30,8 @@ public class FormController {
 	}
 	
 	@PostMapping("/form")
-	public String procesoFormulario(@Valid @ModelAttribute("user") Usuario usuario, BindingResult result, Model model) {
+	public String procesoFormulario(@Valid @ModelAttribute("user") Usuario usuario,
+									BindingResult result, Model model, SessionStatus status) {
 		model.addAttribute("title","Resultado del formulario");
 
 		//binding es cuando falla la validacion para saber eso
@@ -47,8 +47,8 @@ public class FormController {
 			model.addAttribute("error",errores);*/
 			return "form";
 		}
-
 		model.addAttribute("usuario",usuario);
+		status.setComplete(); //con esto se completa el proceso y se elimina cuando termina al usuario del proceso
 		return "resultado";		
 	}
 	
