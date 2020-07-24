@@ -2,12 +2,13 @@ package com.pantigoso.app.form.Model;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Usuario {
 
-
-    //solo se validan los datos que estan en el formulario , los que queremos mapear
+    //Para validaciones personalizadas utilzando expresiones regulares
+    @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
     private String identificador;
     //alternativa con message para mandar mensajes personalizados
     //@NotEmpty(message = "El nombre no puede ser vacio")
