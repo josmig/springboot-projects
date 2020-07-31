@@ -8,14 +8,14 @@ import javax.validation.constraints.Size;
 public class Usuario {
 
     //Para validaciones personalizadas utilzando expresiones regulares
-    @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+    //@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
     private String identificador;
     //alternativa con message para mandar mensajes personalizados
     //@NotEmpty(message = "El nombre no puede ser vacio")
     @NotEmpty
     @Size(min = 3, max = 8) //size para strings solamente , para enter min y max
     private String username;
-    @NotEmpty
+
     private String nombre;
     @NotEmpty
     private String apellido;

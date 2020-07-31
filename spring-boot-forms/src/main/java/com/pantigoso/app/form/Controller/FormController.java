@@ -1,6 +1,8 @@
 package com.pantigoso.app.form.Controller;
 
 import com.pantigoso.app.form.Model.Usuario;
+import com.pantigoso.app.form.Validation.UsuarioValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,8 +17,10 @@ import java.util.Map;
 @SessionAttributes("user") //para mantener los datos del usuario para actualizar
 public class FormController {
 
+	@Autowired
+	private UsuarioValidator validador;
+
 	//Metodos handler GET / POST
-	
 	@GetMapping("/form")
 	public String form(Model model) {
 		Usuario usuario = new Usuario();
@@ -34,6 +38,8 @@ public class FormController {
 									BindingResult result, Model model, SessionStatus status) {
 		model.addAttribute("title","Resultado del formulario");
 
+
+		validador.validate(usuario,result);
 		//binding es cuando falla la validacion para saber eso
 		if(result.hasErrors()){
 			/*
