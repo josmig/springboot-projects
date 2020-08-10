@@ -1,9 +1,6 @@
 package com.pantigoso.app.form.Model;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class Usuario {
 
@@ -12,7 +9,8 @@ public class Usuario {
     private String identificador;
     //alternativa con message para mandar mensajes personalizados
     //@NotEmpty(message = "El nombre no puede ser vacio")
-    @NotEmpty
+
+    @NotBlank
     @Size(min = 3, max = 8) //size para strings solamente , para enter min y max
     private String username;
 
